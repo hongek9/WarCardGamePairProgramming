@@ -22,34 +22,48 @@ namespace WarCardGame_PairProgramming
 
 
 
-            for (int ctr = 0; ctr < order.Length; ctr++)
-
-            {
-
-              order[ctr] = rnd.NextDouble();
-             Console.WriteLine(order[ctr]);
-             }
-
-            Console.ReadLine();
-
-
-
             // split the deck between the two players randomly
 
-            //List<int> playerOneHand = new List<int> { };
-
-            //List<int> playerTwoHand = new List<int> { };
-
-            //int playerOneCount = 26;
-
-            // int playerTwoCount = 26;
 
 
+            List<int> playerOneHand = new List<int> { };
 
-            // while(playerOneCount >0 && playerTwoCount > 0)
-            // {
+            List<int> playerTwoHand = new List<int> { };
 
-            // }
+            int playerOneCount = 26;
+
+            int playerTwoCount = 26;
+
+            for (int i = 51; i == 0; i--)
+            {
+                int randomNum = rnd.Next(i);
+
+                Console.WriteLine(randomNum);
+
+            if (i % 0 == 0)
+                {
+                    int cardValue = deck[randomNum];
+                    playerOneHand.Add(cardValue);
+                    deck.Remove(deck[randomNum]);
+                }
+            else
+                {
+                    int cardValue = deck[randomNum];
+                    playerTwoHand.Add(cardValue);
+                    deck.Remove(deck[randomNum]);
+                }
+            }
+            
+            foreach (int i in playerTwoHand)
+            {
+                Console.WriteLine(i);
+            }
+                Console.ReadLine();
+
+             while(playerOneCount > 0 && playerTwoCount > 0)
+             {
+              
+             }
         }
     }
 }
