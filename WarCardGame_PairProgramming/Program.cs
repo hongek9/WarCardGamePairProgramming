@@ -8,6 +8,13 @@ namespace WarCardGame_PairProgramming
 {
     class Program
     {
+        enum FaceCards
+        {
+            jack = 11,
+            King = 13,
+            Queen = 12,
+            Ace = 14
+        }
         static void Main(string[] args)
         {
             // Create a deck, jack = 11, queen = 12, king = 13, ace = 14
@@ -42,28 +49,57 @@ namespace WarCardGame_PairProgramming
 
             void PlayWarRound(int numOfCards, bool playerOneWon)
             {
-                for(int i = 0; i < numOfCards; i++)
+                for (int i = 0; i < numOfCards; i++)
                 {
                     playerOneHand.Remove(playerOneHand[i]);
                     playerTwoHand.Remove(playerTwoHand[i]);
-                    if(playerOneWon)
+                    if (playerOneWon)
                     {
                         playerOneHand.Add(playerOneHand[i]);
                         playerOneHand.Add(playerTwoHand[i]);
-                    } else
+                    }
+                    else
                     {
                         playerTwoHand.Add(playerOneHand[i]);
                         playerTwoHand.Add(playerTwoHand[i]);
                     }
                 }
             }
-                      
-             while(playerOneHand.Count() > 0 && playerTwoHand.Count() > 0)
-             {
+            string FaceCardConversion(int FaceCardValue)
+            {
+                //We want take a card value and convert to corresponding enum value
+                //if(FaceCardValue >= 11)
+                //{
+                //FaceCardValue == FaceCards(FaceCardValue);
+
+                //}
+                
+                switch (FaceCardValue)
+                {
+
+                    case 11:
+                        return "Jack";
+
+                    case 12:
+                        return "Queen";
+
+                    case 13:
+                        return "King";
+
+                    case 14:
+                        return "Ace";
+
+                    default:
+                        return FaceCardValue.ToString();
+                }
+            }
+
+            while (playerOneHand.Count() > 0 && playerTwoHand.Count() > 0)
+            {
                 int playerOneCard = playerOneHand[0];
-                Console.WriteLine($"Player One: {playerOneCard}");
+                Console.WriteLine($"Player One: {FaceCardConversion (playerOneCard)}");
                 int playerTwoCard = playerTwoHand[0];
-                Console.WriteLine($"Player Two: {playerTwoCard}");
+                Console.WriteLine($"Player Two: {FaceCardConversion (playerTwoCard)}");
                 if (playerOneCard > playerTwoCard)
                 {
                     PlayWarRound(1, true);
@@ -79,11 +115,12 @@ namespace WarCardGame_PairProgramming
                     Console.WriteLine($"Player One Deck Count: {playerOneHand.Count()}");
                     Console.WriteLine($"Player Two Deck Count: {playerTwoHand.Count()}");
                 }
-                else 
+                else
                 {
                     Console.WriteLine("War Time!");
-                    Console.WriteLine($"Player One: {playerOneHand[4]}");
-                    Console.WriteLine($"Player Two: {playerTwoHand[4]}");
+                    Console.WriteLine($"Player One: {FaceCardConversion (playerOneHand[4])}");
+                    Console.WriteLine($"Player Two: {FaceCardConversion (playerTwoHand[4])}");
+
                     if (playerOneHand[4] > playerTwoHand[4])
                     {
                         PlayWarRound(5, true);
@@ -92,30 +129,36 @@ namespace WarCardGame_PairProgramming
                         Console.WriteLine($"Player Two Deck Count: {playerTwoHand.Count()}");
                     }
                     else if (playerTwoHand[4] > playerOneHand[4])
-                    {     
+                    {
                         PlayWarRound(5, false);
                         Console.WriteLine("Player Two Won!");
                         Console.WriteLine($"Player One Deck Count: {playerOneHand.Count()}");
                         Console.WriteLine($"Player Two Deck Count: {playerTwoHand.Count()}");
-
                     }
-                   
                 }
-
                 Console.WriteLine("Press any key to play the next hand.");
                 Console.ReadKey();
                 Console.Clear();
-             }
+            }
 
-             if(playerOneHand.Count() > 0)
-             {
+            if (playerOneHand.Count() > 0)
+            {
                 Console.WriteLine("Player One Wins!");
-             } else
+            }
+            else
             {
                 Console.WriteLine("Player Two Wins!");
+
+
             }
         }
-
-        
     }
 }
+        
+    
+   
+                
+
+        
+    
+
