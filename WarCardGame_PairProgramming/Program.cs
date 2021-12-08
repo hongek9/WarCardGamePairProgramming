@@ -34,13 +34,13 @@ namespace WarCardGame_PairProgramming
 
             int playerTwoCount = 26;
 
-            for (int i = 51; i == 0; i--)
+            for (int i = 51; i >= 0; i--)
             {
                 int randomNum = rnd.Next(i);
 
-                Console.WriteLine(randomNum);
+              
 
-            if (i % 0 == 0)
+            if (i % 2 == 0)
                 {
                     int cardValue = deck[randomNum];
                     playerOneHand.Add(cardValue);
@@ -54,15 +54,87 @@ namespace WarCardGame_PairProgramming
                 }
             }
             
-            foreach (int i in playerTwoHand)
-            {
-                Console.WriteLine(i);
-            }
-                Console.ReadLine();
+           
 
-             while(playerOneCount > 0 && playerTwoCount > 0)
+             while(playerOneHand.Count() > 0 && playerTwoHand.Count() > 0)
              {
-              
+                int playerOneCard = playerOneHand[0];
+                Console.WriteLine(playerOneCard);
+                int playerTwoCard = playerTwoHand[0];
+                Console.WriteLine(playerTwoCard);
+                if (playerOneCard > playerTwoCard)
+                {
+                    playerOneHand.Remove(playerOneHand[0]);
+                    playerTwoHand.Remove(playerTwoHand[0]);
+                    playerOneHand.Add(playerOneHand[0]);
+                    playerOneHand.Add(playerTwoHand[0]);
+                    Console.WriteLine("Player One Won!");
+                }
+                else if (playerTwoCard > playerOneCard)
+                {
+                    playerOneHand.Remove(playerOneHand[0]);
+                    playerTwoHand.Remove(playerTwoHand[0]);
+                    playerTwoHand.Add(playerOneHand[0]);
+                    playerTwoHand.Add(playerTwoHand[0]);
+                    Console.WriteLine("Player Two Won!");
+                }
+                else 
+                {
+                    Console.WriteLine("War Time!");
+                    Console.WriteLine(playerOneHand[4]);
+                    Console.WriteLine(playerTwoHand[4]);
+                    if (playerOneHand[4] > playerTwoHand[4])
+                    {
+                        playerOneHand.Remove(playerOneHand[0]);
+                        playerOneHand.Remove(playerOneHand[1]);
+                        playerOneHand.Remove(playerOneHand[2]);
+                        playerOneHand.Remove(playerOneHand[3]);
+                        playerOneHand.Remove(playerOneHand[4]);
+                        playerTwoHand.Remove(playerTwoHand[0]);
+                        playerTwoHand.Remove(playerTwoHand[1]);
+                        playerTwoHand.Remove(playerTwoHand[2]);
+                        playerTwoHand.Remove(playerTwoHand[3]);
+                        playerTwoHand.Remove(playerTwoHand[4]);
+
+                        playerOneHand.Add(playerOneHand[0]);
+                        playerOneHand.Add(playerOneHand[1]);
+                        playerOneHand.Add(playerOneHand[2]);
+                        playerOneHand.Add(playerOneHand[3]);
+                        playerOneHand.Add(playerOneHand[4]);
+                        playerOneHand.Add(playerTwoHand[0]);
+                        playerOneHand.Add(playerTwoHand[1]);
+                        playerOneHand.Add(playerTwoHand[2]);
+                        playerOneHand.Add(playerTwoHand[3]);
+                        playerOneHand.Add(playerTwoHand[4]);
+                    }
+                    else if (playerTwoHand[4] > playerOneHand[4])
+                    {
+                        playerOneHand.Remove(playerOneHand[0]);
+                        playerOneHand.Remove(playerOneHand[1]);
+                        playerOneHand.Remove(playerOneHand[2]);
+                        playerOneHand.Remove(playerOneHand[3]);
+                        playerOneHand.Remove(playerOneHand[4]);
+                        playerTwoHand.Remove(playerTwoHand[0]);
+                        playerTwoHand.Remove(playerTwoHand[1]);
+                        playerTwoHand.Remove(playerTwoHand[2]);
+                        playerTwoHand.Remove(playerTwoHand[3]);
+                        playerTwoHand.Remove(playerTwoHand[4]);
+
+                        playerTwoHand.Add(playerOneHand[0]);
+                        playerTwoHand.Add(playerOneHand[1]);
+                        playerTwoHand.Add(playerOneHand[2]);
+                        playerTwoHand.Add(playerOneHand[3]);
+                        playerTwoHand.Add(playerOneHand[4]);
+                        playerTwoHand.Add(playerTwoHand[0]);
+                        playerTwoHand.Add(playerTwoHand[1]);
+                        playerTwoHand.Add(playerTwoHand[2]);
+                        playerTwoHand.Add(playerTwoHand[3]);
+                        playerTwoHand.Add(playerTwoHand[4]);
+
+                    }
+                   
+                }
+                Console.ReadKey();
              }
         }
     }

@@ -12,3 +12,10 @@ C:\ElevenFiftyProjects\WarCardGamePairProgramming\WarCardGame_PairProgramming\ob
 C:\ElevenFiftyProjects\WarCardGamePairProgramming\WarCardGame_PairProgramming\obj\Debug\WarCardGame_PairProgramming.csproj.CoreCompileInputs.cache
 C:\ElevenFiftyProjects\WarCardGamePairProgramming\WarCardGame_PairProgramming\obj\Debug\WarCardGame_PairProgramming.exe
 C:\ElevenFiftyProjects\WarCardGamePairProgramming\WarCardGame_PairProgramming\obj\Debug\WarCardGame_PairProgramming.pdb
+C:\Users\Armond\Desktop\Eleven Fifty Projects\GoldBadge\WarCardGamePairProgramming\WarCardGame_PairProgramming\bin\Debug\WarCardGame_PairProgramming.exe.config
+C:\Users\Armond\Desktop\Eleven Fifty Projects\GoldBadge\WarCardGamePairProgramming\WarCardGame_PairProgramming\bin\Debug\WarCardGame_PairProgramming.exe
+C:\Users\Armond\Desktop\Eleven Fifty Projects\GoldBadge\WarCardGamePairProgramming\WarCardGame_PairProgramming\bin\Debug\WarCardGame_PairProgramming.pdb
+C:\Users\Armond\Desktop\Eleven Fifty Projects\GoldBadge\WarCardGamePairProgramming\WarCardGame_PairProgramming\obj\Debug\WarCardGame_PairProgramming.csproj.AssemblyReference.cache
+C:\Users\Armond\Desktop\Eleven Fifty Projects\GoldBadge\WarCardGamePairProgramming\WarCardGame_PairProgramming\obj\Debug\WarCardGame_PairProgramming.csproj.CoreCompileInputs.cache
+C:\Users\Armond\Desktop\Eleven Fifty Projects\GoldBadge\WarCardGamePairProgramming\WarCardGame_PairProgramming\obj\Debug\WarCardGame_PairProgramming.exe
+C:\Users\Armond\Desktop\Eleven Fifty Projects\GoldBadge\WarCardGamePairProgramming\WarCardGame_PairProgramming\obj\Debug\WarCardGame_PairProgramming.pdb
