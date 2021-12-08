@@ -14,128 +14,108 @@ namespace WarCardGame_PairProgramming
 
             List<int> deck = new List<int> { 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 6, 6, 6, 6, 7, 7, 7, 7, 8, 8, 8, 8, 9, 9, 9, 9, 10, 10, 10, 10, 11, 11, 11, 11, 12, 12, 12, 12, 13, 13, 13, 13, 14, 14, 14, 14 };
 
-            // parrallel array for shuffling
-
-            Double[] order = new Double[52];
 
             Random rnd = new Random();
-
-
-
             // split the deck between the two players randomly
-
-
 
             List<int> playerOneHand = new List<int> { };
 
             List<int> playerTwoHand = new List<int> { };
 
-            int playerOneCount = 26;
-
-            int playerTwoCount = 26;
-
             for (int i = 51; i >= 0; i--)
             {
                 int randomNum = rnd.Next(i);
 
-              
-
-            if (i % 2 == 0)
+                if (i % 2 == 0)
                 {
                     int cardValue = deck[randomNum];
                     playerOneHand.Add(cardValue);
                     deck.Remove(deck[randomNum]);
                 }
-            else
+                else
                 {
                     int cardValue = deck[randomNum];
                     playerTwoHand.Add(cardValue);
                     deck.Remove(deck[randomNum]);
                 }
             }
-            
-           
 
+            void PlayWarRound(int numOfCards, bool playerOneWon)
+            {
+                for(int i = 0; i < numOfCards; i++)
+                {
+                    playerOneHand.Remove(playerOneHand[i]);
+                    playerTwoHand.Remove(playerTwoHand[i]);
+                    if(playerOneWon)
+                    {
+                        playerOneHand.Add(playerOneHand[i]);
+                        playerOneHand.Add(playerTwoHand[i]);
+                    } else
+                    {
+                        playerTwoHand.Add(playerOneHand[i]);
+                        playerTwoHand.Add(playerTwoHand[i]);
+                    }
+                }
+            }
+                      
              while(playerOneHand.Count() > 0 && playerTwoHand.Count() > 0)
              {
                 int playerOneCard = playerOneHand[0];
-                Console.WriteLine(playerOneCard);
+                Console.WriteLine($"Player One: {playerOneCard}");
                 int playerTwoCard = playerTwoHand[0];
-                Console.WriteLine(playerTwoCard);
+                Console.WriteLine($"Player Two: {playerTwoCard}");
                 if (playerOneCard > playerTwoCard)
                 {
-                    playerOneHand.Remove(playerOneHand[0]);
-                    playerTwoHand.Remove(playerTwoHand[0]);
-                    playerOneHand.Add(playerOneHand[0]);
-                    playerOneHand.Add(playerTwoHand[0]);
+                    PlayWarRound(1, true);
                     Console.WriteLine("Player One Won!");
+                    Console.WriteLine($"Player One Deck Count: {playerOneHand.Count()}");
+                    Console.WriteLine($"Player Two Deck Count: {playerTwoHand.Count()}");
+
                 }
                 else if (playerTwoCard > playerOneCard)
                 {
-                    playerOneHand.Remove(playerOneHand[0]);
-                    playerTwoHand.Remove(playerTwoHand[0]);
-                    playerTwoHand.Add(playerOneHand[0]);
-                    playerTwoHand.Add(playerTwoHand[0]);
+                    PlayWarRound(1, false);
                     Console.WriteLine("Player Two Won!");
+                    Console.WriteLine($"Player One Deck Count: {playerOneHand.Count()}");
+                    Console.WriteLine($"Player Two Deck Count: {playerTwoHand.Count()}");
                 }
                 else 
                 {
                     Console.WriteLine("War Time!");
-                    Console.WriteLine(playerOneHand[4]);
-                    Console.WriteLine(playerTwoHand[4]);
+                    Console.WriteLine($"Player One: {playerOneHand[4]}");
+                    Console.WriteLine($"Player Two: {playerTwoHand[4]}");
                     if (playerOneHand[4] > playerTwoHand[4])
                     {
-                        playerOneHand.Remove(playerOneHand[0]);
-                        playerOneHand.Remove(playerOneHand[1]);
-                        playerOneHand.Remove(playerOneHand[2]);
-                        playerOneHand.Remove(playerOneHand[3]);
-                        playerOneHand.Remove(playerOneHand[4]);
-                        playerTwoHand.Remove(playerTwoHand[0]);
-                        playerTwoHand.Remove(playerTwoHand[1]);
-                        playerTwoHand.Remove(playerTwoHand[2]);
-                        playerTwoHand.Remove(playerTwoHand[3]);
-                        playerTwoHand.Remove(playerTwoHand[4]);
-
-                        playerOneHand.Add(playerOneHand[0]);
-                        playerOneHand.Add(playerOneHand[1]);
-                        playerOneHand.Add(playerOneHand[2]);
-                        playerOneHand.Add(playerOneHand[3]);
-                        playerOneHand.Add(playerOneHand[4]);
-                        playerOneHand.Add(playerTwoHand[0]);
-                        playerOneHand.Add(playerTwoHand[1]);
-                        playerOneHand.Add(playerTwoHand[2]);
-                        playerOneHand.Add(playerTwoHand[3]);
-                        playerOneHand.Add(playerTwoHand[4]);
+                        PlayWarRound(5, true);
+                        Console.WriteLine("Player One Won!");
+                        Console.WriteLine($"Player One Deck Count: {playerOneHand.Count()}");
+                        Console.WriteLine($"Player Two Deck Count: {playerTwoHand.Count()}");
                     }
                     else if (playerTwoHand[4] > playerOneHand[4])
-                    {
-                        playerOneHand.Remove(playerOneHand[0]);
-                        playerOneHand.Remove(playerOneHand[1]);
-                        playerOneHand.Remove(playerOneHand[2]);
-                        playerOneHand.Remove(playerOneHand[3]);
-                        playerOneHand.Remove(playerOneHand[4]);
-                        playerTwoHand.Remove(playerTwoHand[0]);
-                        playerTwoHand.Remove(playerTwoHand[1]);
-                        playerTwoHand.Remove(playerTwoHand[2]);
-                        playerTwoHand.Remove(playerTwoHand[3]);
-                        playerTwoHand.Remove(playerTwoHand[4]);
-
-                        playerTwoHand.Add(playerOneHand[0]);
-                        playerTwoHand.Add(playerOneHand[1]);
-                        playerTwoHand.Add(playerOneHand[2]);
-                        playerTwoHand.Add(playerOneHand[3]);
-                        playerTwoHand.Add(playerOneHand[4]);
-                        playerTwoHand.Add(playerTwoHand[0]);
-                        playerTwoHand.Add(playerTwoHand[1]);
-                        playerTwoHand.Add(playerTwoHand[2]);
-                        playerTwoHand.Add(playerTwoHand[3]);
-                        playerTwoHand.Add(playerTwoHand[4]);
+                    {     
+                        PlayWarRound(5, false);
+                        Console.WriteLine("Player Two Won!");
+                        Console.WriteLine($"Player One Deck Count: {playerOneHand.Count()}");
+                        Console.WriteLine($"Player Two Deck Count: {playerTwoHand.Count()}");
 
                     }
                    
                 }
+
+                Console.WriteLine("Press any key to play the next hand.");
                 Console.ReadKey();
+                Console.Clear();
              }
+
+             if(playerOneHand.Count() > 0)
+             {
+                Console.WriteLine("Player One Wins!");
+             } else
+            {
+                Console.WriteLine("Player Two Wins!");
+            }
         }
+
+        
     }
 }
