@@ -49,20 +49,23 @@ namespace WarCardGame_PairProgramming
 
             void PlayWarRound(int numOfCards, bool playerOneWon)
             {
+                /**/
+
                 for (int i = 0; i < numOfCards; i++)
                 {
-                    playerOneHand.Remove(playerOneHand[i]);
-                    playerTwoHand.Remove(playerTwoHand[i]);
+                   
                     if (playerOneWon)
                     {
-                        playerOneHand.Add(playerOneHand[i]);
-                        playerOneHand.Add(playerTwoHand[i]);
+                        playerOneHand.Add(playerOneHand[0]);
+                        playerOneHand.Add(playerTwoHand[0]);
                     }
                     else
                     {
-                        playerTwoHand.Add(playerOneHand[i]);
-                        playerTwoHand.Add(playerTwoHand[i]);
+                        playerTwoHand.Add(playerOneHand[0]);
+                        playerTwoHand.Add(playerTwoHand[0]);
                     }
+                    playerOneHand.Remove(playerOneHand[0]);
+                    playerTwoHand.Remove(playerTwoHand[0]);
                 }
             }
             string FaceCardConversion(int FaceCardValue)
@@ -115,8 +118,9 @@ namespace WarCardGame_PairProgramming
                     Console.WriteLine($"Player One Deck Count: {playerOneHand.Count()}");
                     Console.WriteLine($"Player Two Deck Count: {playerTwoHand.Count()}");
                 }
-                else
+                else if(playerOneHand.Count() >=5 && playerTwoHand.Count() >=5)
                 {
+
                     Console.WriteLine("War Time!");
                     Console.WriteLine($"Player One: {FaceCardConversion (playerOneHand[4])}");
                     Console.WriteLine($"Player Two: {FaceCardConversion (playerTwoHand[4])}");
@@ -135,6 +139,76 @@ namespace WarCardGame_PairProgramming
                         Console.WriteLine($"Player One Deck Count: {playerOneHand.Count()}");
                         Console.WriteLine($"Player Two Deck Count: {playerTwoHand.Count()}");
                     }
+                    else if (playerOneHand.Count() >= 9 && playerTwoHand.Count() >= 9)
+                    {
+                        if (playerOneHand[8] > playerTwoHand[8])
+                        {
+                            PlayWarRound(9, true);
+                            Console.WriteLine("Player One Won!");
+                            Console.WriteLine($"Player One Deck Count: {playerOneHand.Count()}");
+                            Console.WriteLine($"Player Two Deck Count: {playerTwoHand.Count()}");
+                        }
+                        else if (playerTwoHand[8] > playerOneHand[8])
+                        {
+                            PlayWarRound(9, false);
+                            Console.WriteLine("Player Two Won!");
+                            Console.WriteLine($"Player One Deck Count: {playerOneHand.Count()}");
+                            Console.WriteLine($"Player Two Deck Count: {playerTwoHand.Count()}");
+
+                        }
+
+                    }
+                    else
+                    {
+                        //compare and see who doesn't have enough cards
+                        bool Player1HasEnoughCards = playerOneHand.Count() > playerTwoHand.Count();
+                        bool Player1Won;
+
+                        if (Player1HasEnoughCards)
+                        {
+                            Player1Won = playerOneHand[playerTwoHand.Count() - 1] > playerTwoHand[playerTwoHand.Count() - 1];
+                            PlayWarRound(playerTwoHand.Count(), Player1Won);
+                            Console.WriteLine($"Player {(Player1Won ? "One" : "Two")} Won!");
+                            Console.WriteLine($"Player One Deck Count: {playerOneHand.Count()}");
+                            Console.WriteLine($"Player Two Deck Count: {playerTwoHand.Count()}");
+
+                        }
+                        else
+                        {
+                            Player1Won = playerOneHand[playerOneHand.Count() - 1] > playerTwoHand[playerOneHand.Count() - 1];
+                            PlayWarRound(playerOneHand.Count(), Player1Won);
+                            Console.WriteLine($"Player {(Player1Won ? "One" : "Two")} Won!");
+                            Console.WriteLine($"Player One Deck Count: {playerOneHand.Count()}");
+                            Console.WriteLine($"Player Two Deck Count: {playerTwoHand.Count()}");
+                        }
+                    }
+
+
+
+                }
+                else
+                {
+                    //compare and see who doesn't have enough cards
+                    bool Player1HasEnoughCards = playerOneHand.Count() > playerTwoHand.Count();
+                    bool Player1Won;
+                   
+                    if (Player1HasEnoughCards )
+                    {
+                        Player1Won = playerOneHand[playerTwoHand.Count() - 1] > playerTwoHand[playerTwoHand.Count() -1];
+                        PlayWarRound(playerTwoHand.Count(), Player1Won);
+                        Console.WriteLine($"Player {(Player1Won ? "One" : "Two")} Won!");
+                        Console.WriteLine($"Player One Deck Count: {playerOneHand.Count()}");
+                        Console.WriteLine($"Player Two Deck Count: {playerTwoHand.Count()}");
+
+                    }
+                    else 
+                    {
+                        Player1Won = playerOneHand[playerOneHand.Count() - 1] > playerTwoHand[playerOneHand.Count() - 1];
+                        PlayWarRound(playerOneHand.Count(), Player1Won);
+                        Console.WriteLine($"Player {(Player1Won ? "One" : "Two")} Won!");
+                        Console.WriteLine($"Player One Deck Count: {playerOneHand.Count()}");
+                        Console.WriteLine($"Player Two Deck Count: {playerTwoHand.Count()}");
+                    }
                 }
                 Console.WriteLine("Press any key to play the next hand.");
                 Console.ReadKey();
@@ -143,14 +217,15 @@ namespace WarCardGame_PairProgramming
 
             if (playerOneHand.Count() > 0)
             {
-                Console.WriteLine("Player One Wins!");
+                Console.WriteLine("Player One Wins!\n Game Over!");
             }
             else
             {
-                Console.WriteLine("Player Two Wins!");
+                Console.WriteLine("Player Two Wins!\n Game Over!");
 
 
             }
+            Console.ReadLine();
         }
     }
 }
